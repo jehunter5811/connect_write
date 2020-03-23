@@ -549,10 +549,10 @@ router.put("/private/:id", auth, async (req, res) => {
     }
 
     //  Check private boolean
-    const private = submission.private;
+    const privateSub = submission.private;
 
     //  Change the status to the opposite of that it is now
-    submission.private = !private;
+    submission.private = !privateSub;
 
     await submission.save();
 

@@ -1,14 +1,14 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const fileUpload = require('express-fileupload');
+const config = require('config');
 
 const app = express();
 
 app.use(fileUpload());
 
 //  Connect Database
-
-connectDB();
+connectDB(config.get('environment'));
 
 //  Init Middleware
 app.use(express.json({ extended: false }));

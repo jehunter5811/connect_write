@@ -24,7 +24,7 @@ router.post('/', [auth, validateUpload], async (req, res) => {
     const file = files[fileKey];
     const params = {
       Bucket: config.get('bucketName'),
-      Key: `${uuidv4()}.pdf`, 
+      Key: `${req.user.id}/${uuidv4()}.pdf`, 
       Body: file.data
     };
 
@@ -51,7 +51,7 @@ router.delete('/:file_name', auth, async (req, res) => {
   try {
     const params = {
       Bucket: config.get('bucketName'),
-      Key: req.params.file_name
+      Key: `${req.user.id}/${req.params.file_id}.pdf`
     };
 
     await s3.deleteObject(params, (err, data) => {
